@@ -21,8 +21,9 @@ router.get('/quizes/:quizId(\\d+)/answer', quizController.answer); //muestra la 
 //creación de preguntas nuevas
 router.get('/quizes/new', quizController.new); //llama al formulario, que introduce la pregunta
 router.post('/quizes/create', quizController.create);//y recibe el POST, con el que insertará en la BD, luego
-//                                                   //redirecciona de nuevo a /quizes
-
+//                                                    //redirecciona de nuevo a /quizes
+router.get('/quizes/:quizId(\\d+)/edit', quizController.edit); //editamos una pregunta ya creada
+router.put('/quizes/:quizId(\\d+)',  quizController.update);
 //Créditos
 router.get('/author/creditos', authorController.creditos);
 
