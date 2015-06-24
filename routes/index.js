@@ -15,6 +15,7 @@ router.param('quizId', quizController.load);  // autoload :quizId
 // Definición de rutas de /quizes
 
 router.get('/quizes/', quizController.index);
+router.get('/quizes?search(*)', quizController.index);
 router.get('/quizes/:quizId(\\d+)',        quizController.show); //muestra la pregunta
 router.get('/quizes/:quizId(\\d+)/answer', quizController.answer); //muestra la respuesta
 
@@ -24,6 +25,8 @@ router.post('/quizes/create', quizController.create);//y recibe el POST, con el 
 //                                                    //redirecciona de nuevo a /quizes
 router.get('/quizes/:quizId(\\d+)/edit', quizController.edit); //editamos una pregunta ya creada
 router.put('/quizes/:quizId(\\d+)',  quizController.update);
+router.delete('/quizes/:quizId(\\d+)',     quizController.destroy);
+
 //Créditos
 router.get('/author/creditos', authorController.creditos);
 

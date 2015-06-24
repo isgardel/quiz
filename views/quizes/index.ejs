@@ -1,6 +1,14 @@
 <form method="get" action="/quizes?search"> 
-  Buscar pregunta:  <br>
-  <input type="text" name="search" value="texto a buscar"/>
+  Buscar pregunta:  
+  <input type="text" name="search" /> <br>
+  Temas
+  <select name="tema">
+    <option value="otro">Otro</option>
+    <option value="humanidades">Humanidades</option>
+    <option value="ocio">Ocio</option>
+    <option value="ciencia">Ciencia</option>
+    <option value="tecnologia">Tecnología</option>
+ </select> <br>
   <input type="submit" value="Enviar">
 </form>
  
@@ -9,6 +17,13 @@
      <tr>
        <td><a href="quizes/<%= quizes[i].id %>"><%= quizes[i].pregunta %></a></td>
        <td><a href="quizes/<%= quizes[i].id %>/edit"><button>editar</button></a></td>
+       <td>
+        <form method="post" action="quizes/<%= quizes[i].id %>?_method=delete">
+          <button type="submit" onClick="return confirm('Borrar: <%= quizes[i].pregunta %>');">
+            borrar
+          </button>
+        </form>
+      </td>
      </tr> 
   <% } %>
   </table>
