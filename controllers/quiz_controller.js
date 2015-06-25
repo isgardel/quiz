@@ -3,8 +3,17 @@ var models = require('../models/models.js');
 // Autoload - factoriza el código si ruta incluye :quizId, es decir si la ruta tiene un id de quiz, lo carga
 //automáticamente, y lo devuelve en req.quiz
 exports.load = function(req, res, next, quizId) {
-  models.Quiz.find(quizId).then(
-    function(quiz) {
+ // models.Quiz.find(quizId).then( //versión antigua, sólo cargaba quizes
+ //   function(quiz) {
+  models.Quiz.find({  //versión nueva incluye los comments
+            where: {
+                id: Number(quizId)
+            },
+            include: [{
+                model: models.Comment
+            }]
+        }).then(function(quiz) {
+
       if (quiz) {
         req.quiz = quiz;
         next();
