@@ -7,6 +7,8 @@ var bodyParser = require('body-parser');
 var partials = require('express-partials');
 var methodOverride = require('method-override'); //para que al editar pregunta, convertir el POST en PUT, el enviar
                                         // en edit.ejs el form con action="/quizes/<%= quiz.id %>?_method=put"
+var session = require('express-session');
+
 
 var routes = require('./routes/index');
 
@@ -23,9 +25,26 @@ app.use(favicon(__dirname + '/public/favicon.ico'));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded()); 
-app.use(cookieParser());
+app.use(cookieParser('Quiz 2015')); //añadir semilla, para cifrar la cookie
+app.use(session());
+
 app.use(methodOverride('_method'));
 app.use(express.static(path.join(__dirname, 'public')));
+
+// Helpers dinamicos:
+app.use(function(req, res, next) {
+
+  // guardar path en session.redir para despues de login
+  if (!req.path.match(/\/login|\/logout/)) {
+    req.session.redir = req.path;
+  }
+
+  // Hacer visible req.session en las vistas
+  res.locals.session = req.session;
+  next();
+});
+
+
 
 app.use('/', routes);
 
