@@ -34,8 +34,12 @@ exports.create = function(req, res) {
         // Crear req.session.user y guardar campos   id  y  username
         // La sesión se define por la existencia de:    req.session.user
         req.session.user = {id:user.id, username:user.username};
+        //vble, que guarda el tiempo desde que inició sesión, y que se borrar al salir
+        //al ser parte del obj, req.session
+        req.session.tiempoCreacionSesion = (new Date()).getTime() ;
 
         res.redirect(req.session.redir.toString());// redirección a path anterior a login
+        
     });
 };
 
