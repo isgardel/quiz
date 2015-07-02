@@ -15,7 +15,18 @@ module.exports = function(sequelize, DataTypes) {
         type: DataTypes.STRING,
         validate: { notEmpty: {msg: "-> Falta Tema"}}
       }
+    },
+      {  
+      classMethods: {
+	  
+	  contarQuizesSinComentarios: function() {
+	    return this.aggregate('id', 'count', { distinct: true, where: 'not exists (select QuizId from Comments where Comments.QuizId = Quiz.id)'});
+	      
+	      
+	  }
+      }
     }
   );
 }
 
+//Select * from t1 where not exists (select 1 from t2 where t2.id = t1.id)
