@@ -1,19 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel='stylesheet' href='/css/bootstrap.min.css' />
+<!--for responsive feature -->
+<meta name='viewport' content='width=device-width, initial-scale=1.0'>
+<link rel='stylesheet' href='/css/bootstrap-responsive.css'>
+<style>
+body {
+padding-top:30px;
+}
+</style>
+</head>
+<body>
+
 <h2>Login</h2>
 
-<form method='POST' action='/login'>
+<div class="container">
+  <form class="form-horizontal form-signin" method='POST' action='/login'>
+    <div class="control-group"><label class="control-label res-clabel" for="login">Login</label>
+    <div class="controls res-controll"><input name="login" type="text" /></div>
+    </div>
+    <div class="control-group"><label class="control-label res-clabel" for="password">Password</label>
+    <div class="controls res-controll"><input id="password" type="password" name="password" /></div>
+    </div>
+    <button class="btn btn-primary res-btn-log" name="commit" type="submit" value="Login" data-loading-text="Loading...">Sign in</button>
 
-  <div class="field">
-    <label for="login">Login:</label><br />
-    <input type="text" id="login" name="login" size="30" />
-  </div>
-
-  <div class="field">
-    <label for="password">Password:</label><br />
-    <input type="password" id="password" name="password" size="30" />
-  </div>
-
-  <div class="actions">
-    <input name="commit" type="submit" value="Login" />
-  </div>
-
-</form> 
+</form>
+  
+</div>
+</body>
+</html>
