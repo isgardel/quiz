@@ -15,13 +15,12 @@ module.exports = function(sequelize, DataTypes) {
     {
       classMethods: {
 	  contarQuizesConComentarios: function() {
-	      return this.aggregate('QuizId', 'count', { distinct: true });
+	     return this.aggregate('QuizId', 'count', { distinct: true });
 	      //console.log('ClassMetods '+contar);
-	      //return this.contar;
+	      
 	  }
       }
     }
   );
 }
 
-//Select * from t1 where not exists (select 1 from t2 where t2.id = t1.id)

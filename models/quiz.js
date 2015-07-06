@@ -20,8 +20,8 @@ module.exports = function(sequelize, DataTypes) {
       classMethods: {
 	  
 	  contarQuizesSinComentarios: function() {
-	    return this.aggregate('id', 'count', { distinct: true, where: 'not exists (select QuizId from Comments where Comments.QuizId = Quiz.id)'});
-	      
+	   // return this.aggregate('id', 'count', { distinct: true, where: 'not exists (select QuizId from Comments where Comments.QuizId = Quiz.id)'});
+	    return 1; 
 	      
 	  }
       }
