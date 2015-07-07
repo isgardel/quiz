@@ -38,7 +38,8 @@ exports.create = function(req, res) {
         //al ser parte del obj, req.session
         req.session.tiempoCreacionSesion = (new Date()).getTime() ;
 
-        res.redirect(req.session.redir.toString());// redirección a path anterior a login
+        //res.redirect(req.session.redir.toString());// redirección a path anterior a login
+        res.redirect("/");
         
     });
 };
