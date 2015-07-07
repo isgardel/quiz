@@ -33,7 +33,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 //Middleware, para controlar el tiempo de sesión máximo sin interactuar
 app.use(function(req, res, next){
-    var tiempoMaximoInactividad = 50000; //milisegundos para eliminar la sesión
+    var tiempoMaximoInactividad = 120000; //milisegundos para eliminar la sesión
     if (req.session.user) { //Si existe la sesión, comprobamos el tiempo de inactividad, con la vble creada en
                             //session_controller.js, tiempoCreacionSesion       
         if (req.session.tiempoCreacionSesion + tiempoMaximoInactividad  > (new Date()).getTime()) { // Si no ha expirado Actualizamos la hora de expiracion
@@ -41,6 +41,8 @@ app.use(function(req, res, next){
             next();
         } else {
             req.session.destroy(); // Si la sesion ha expirado la cerramos
+            res.redirect("/login");
+            next();
         }
     } else {
         next(); // Si no había sesión iniciada no hacemos nada, y pasamos al siguiente

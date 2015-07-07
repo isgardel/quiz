@@ -53,7 +53,7 @@ exports.estadisticas = function(req, res, next) {
             estadisticas.quizesConComentarios = numQuizesConComentarios;
            //console.log('En controlador '+estadisticas.quizesConComentarios);
             
-             return models.Quiz.contarQuizesSinComentarios();
+            return models.Quiz.contarQuizesSinComentarios();
           })
                 .then(function (numQuizesSinComentarios) { // número de comentarios
                 estadisticas.quizesSinComentarios = numQuizesSinComentarios;
